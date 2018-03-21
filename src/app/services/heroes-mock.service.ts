@@ -1,3 +1,4 @@
+import { MessagesService } from './messages.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { HeroesInt } from './heroes-int.service';
@@ -20,9 +21,10 @@ export class HeroesMockService implements HeroesInt {
     { id: 20, name: 'Tornado' }
   ];
 
-  constructor() { }
+  constructor(private messageService: MessagesService) { }
 
   getHeroes(): Observable<Hero[]> {
+    this.messageService.add('HeroesService: Héroes recuperados');
     return of(this.heroes);
   }
 }
