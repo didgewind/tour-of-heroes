@@ -1,3 +1,5 @@
+import { HeroesInt } from './../../services/heroes-int.service';
+import { HeroesMockService } from './../../services/heroes-mock.service';
 import { Hero } from './../../model/hero';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,11 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroesComponent implements OnInit {
 
-  hero: Hero = new Hero(1, 'Windstorm');
+  private heroesService: HeroesInt;
 
-  constructor() { }
+  heroes: Hero[];
+
+  constructor(heroesService: HeroesMockService) {
+    this.heroesService = heroesService;
+  }
 
   ngOnInit() {
+    this.getHeroes();
+  }
+
+  getHeroes(): void {
+    this.heroes = this.heroesService.getHeroes();
   }
 
 }
