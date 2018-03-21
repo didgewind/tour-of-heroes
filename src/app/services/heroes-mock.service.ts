@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 import { HeroesInt } from './heroes-int.service';
 import { Hero } from './../model/hero';
 import { Injectable } from '@angular/core';
@@ -20,7 +22,7 @@ export class HeroesMockService implements HeroesInt {
 
   constructor() { }
 
-  getHeroes(): Hero[] {
-    return this.heroes;
+  getHeroes(): Observable<Hero[]> {
+    return of(this.heroes);
   }
 }
