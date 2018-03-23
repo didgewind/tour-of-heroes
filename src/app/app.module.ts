@@ -8,6 +8,7 @@ import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroesMockService } from './services/heroes-mock.service';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MessagesComponent } from './components/messages/messages.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [HeroesMockService, MessagesService],
   bootstrap: [AppComponent]
