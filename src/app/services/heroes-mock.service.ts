@@ -1,12 +1,12 @@
 import { MessagesService } from './messages.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { HeroesInt } from './heroes-int.service';
+import { HeroesIntService } from './heroes-int.service';
 import { Hero } from './../model/hero';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class HeroesMockService implements HeroesInt {
+export class HeroesMockService implements HeroesIntService {
 
   private heroes: Hero[] = [
     new Hero(11, 'Mr. Nice' ),
@@ -26,5 +26,10 @@ export class HeroesMockService implements HeroesInt {
   getHeroes(): Observable<Hero[]> {
     this.messageService.add('HeroesService: Héroes recuperados');
     return of(this.heroes);
+  }
+
+  getHero(id: number): Observable<Hero> {
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of(this.heroes.find(hero => hero.id === id));
   }
 }

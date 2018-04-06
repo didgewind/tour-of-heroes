@@ -1,8 +1,8 @@
 import { Hero } from './../model/hero';
 import { Observable } from 'rxjs/Observable';
 
-export interface HeroesInt {
+export interface HeroesIntService {
 
     getHeroes(): Observable<Hero[]>;
-
+    getHero(id: number): Observable<Hero>;
 }

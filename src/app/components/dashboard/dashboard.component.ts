@@ -1,18 +1,18 @@
 import { HeroesIntService } from './../../services/heroes-int.service';
-import { HeroesMockService } from './../../services/heroes-mock.service';
 import { Hero } from './../../model/hero';
 import { Component, OnInit } from '@angular/core';
+import { HeroesMockService } from '../../services/heroes-mock.service';
+
 
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: [ './dashboard.component.css' ]
 })
-export class HeroesComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
   private heroesService: HeroesIntService;
-
-  heroes: Hero[];
+  heroes: Hero[] = [];
 
   constructor(heroesService: HeroesMockService) {
     this.heroesService = heroesService;
@@ -24,7 +24,6 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroesService.getHeroes()
-        .subscribe(heroes => this.heroes = heroes);
+      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
   }
-
 }
