@@ -1,8 +1,9 @@
+import { HeroesIntService } from './../../services/heroes-int.service';
+import { HeroesAdapterService } from './../../services/heroes-adapter.service';
 import { Hero } from './../../model/hero';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { HeroesMockService } from '../../services/heroes-mock.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -11,13 +12,16 @@ import { HeroesMockService } from '../../services/heroes-mock.service';
 })
 export class HeroDetailComponent implements OnInit {
 
+  private heroesService: HeroesIntService;
   @Input() hero: Hero;
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroesMockService,
+    heroesService: HeroesAdapterService,
     private location: Location
-  ) { }
+  ) {
+    this.heroesService = heroesService;
+   }
 
   ngOnInit(): void {
     this.getHero();
@@ -25,7 +29,7 @@ export class HeroDetailComponent implements OnInit {
 
   getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getHero(id)
+    this.heroesService.getHero(id)
       .subscribe(hero => this.hero = hero);
   }
 

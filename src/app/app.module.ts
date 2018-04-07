@@ -1,3 +1,4 @@
+import { HeroesAdapterService } from './services/heroes-adapter.service';
 import { MessagesService } from './services/messages.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,7 +25,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [HeroesMockService, MessagesService],
+  providers: [HeroesMockService, MessagesService, HeroesAdapterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

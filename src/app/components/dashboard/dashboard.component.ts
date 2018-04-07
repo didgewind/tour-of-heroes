@@ -1,7 +1,7 @@
+import { HeroesAdapterService } from './../../services/heroes-adapter.service';
 import { HeroesIntService } from './../../services/heroes-int.service';
 import { Hero } from './../../model/hero';
 import { Component, OnInit } from '@angular/core';
-import { HeroesMockService } from '../../services/heroes-mock.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   private heroesService: HeroesIntService;
   heroes: Hero[] = [];
 
-  constructor(heroesService: HeroesMockService) {
+  constructor(heroesService: HeroesAdapterService) {
     this.heroesService = heroesService;
   }
 
