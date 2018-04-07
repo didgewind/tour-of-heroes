@@ -11,6 +11,8 @@ import { HeroDetailComponent } from './components/hero-detail/hero-detail.compon
 import { MessagesComponent } from './components/messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HeroesRestService } from './services/heroes-rest.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [HeroesMockService, MessagesService, HeroesAdapterService],
+  providers: [HeroesMockService, MessagesService, HeroesAdapterService, HeroesRestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
