@@ -20,4 +20,9 @@ export class HeroesRestService implements HeroesIntService {
     const url = `${this.heroesRestUrl}/${id}`;
     return this.http.get<Hero>(url);
   }
+
+  updateHero (updatedHero: Hero): Observable<any> {
+    const url = `${this.heroesRestUrl}/${updatedHero.id}`;
+    return this.http.put(url, updatedHero);
+  }
 }

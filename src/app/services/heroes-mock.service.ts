@@ -1,4 +1,3 @@
-import { MessagesService } from './messages.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { HeroesIntService } from './heroes-int.service';
@@ -21,7 +20,7 @@ export class HeroesMockService implements HeroesIntService {
     { id: 20, name: 'Tornado' }
   ];
 
-  constructor(private messageService: MessagesService) { }
+  constructor() { }
 
   getHeroes(): Observable<Hero[]> {
     return of(this.heroes);
@@ -30,4 +29,16 @@ export class HeroesMockService implements HeroesIntService {
   getHero(id: number): Observable<Hero> {
     return of(this.heroes.find(hero => hero.id === id));
   }
+
+  updateHero (updatedHero: Hero): Observable<any> {
+    const foundHero = this.heroes.find((oldHero, index) => {
+      if (oldHero.id === updatedHero.id) {
+        this.heroes[index] = updatedHero;
+        return true;
+      }
+    });
+    // TODO: comprobar si foundHero es undefined y entonces retornar error
+    return of(foundHero);
+  }
+
 }

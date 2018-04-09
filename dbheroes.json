@@ -1,32 +1,32 @@
 {
-    "heroes": [
-        {
-            "id": 1,
-            "name": "profe"
-        },
-        {
-            "id": 2,
-            "name": "neus"
-        },
-        {
-            "id": 3,
-            "name": "inaru"
-        },
-        {
-            "id": 4,
-            "name": "machote"
-        },
-        {
-            "id": 5,
-            "name": "capdevilla"
-        },
-        {
-            "id": 6,
-            "name": "jesús"
-        },
-        {
-            "id": 7,
-            "name": "ángel"
-        }
-    ]
+  "heroes": [
+    {
+      "id": 1,
+      "name": "profe"
+    },
+    {
+      "id": 2,
+      "name": "neussilla"
+    },
+    {
+      "id": 3,
+      "name": "inaru"
+    },
+    {
+      "id": 4,
+      "name": "machote"
+    },
+    {
+      "id": 5,
+      "name": "capdevilla"
+    },
+    {
+      "id": 6,
+      "name": "jesús"
+    },
+    {
+      "id": 7,
+      "name": "ángel"
+    }
+  ]
 }
