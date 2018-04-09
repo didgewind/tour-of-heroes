@@ -20,6 +20,8 @@ export class HeroesMockService implements HeroesIntService {
     { id: 20, name: 'Tornado' }
   ];
 
+  private nextId = 21; // Para asignar id's a héroes nuevos
+
   constructor() { }
 
   getHeroes(): Observable<Hero[]> {
@@ -30,7 +32,14 @@ export class HeroesMockService implements HeroesIntService {
     return of(this.heroes.find(hero => hero.id === id));
   }
 
-  updateHero (updatedHero: Hero): Observable<any> {
+  /*
+    Todo esto en realidad no hace falta porque al modificar
+    un componente un objeto Hero se modifica también en este
+    array porque son el mismo objeto, pero está bien
+    dejarlo aquí por si queremos simularlo mejor clonando
+    los objetos al intercambiarlos con otras capas
+  */
+  updateHero (updatedHero: Hero): Observable<Hero> {
     const foundHero = this.heroes.find((oldHero, index) => {
       if (oldHero.id === updatedHero.id) {
         this.heroes[index] = updatedHero;
@@ -41,4 +50,17 @@ export class HeroesMockService implements HeroesIntService {
     return of(foundHero);
   }
 
+  /*
+    No hacemos nada (sólo asignar id al héroe) porque ya añadimos el héroe
+    al array de héroes en el componente.
+  */
+  addHero(newHero: Hero): Observable<Hero> {
+    newHero.id = this.nextId++;
+    return of(newHero);
+  }
+
+  deleteHero(heroToDelete: Hero): Observable<Hero> {
+    this.heroes = this.heroes.filter(h => h !== heroToDelete);
+    return of(heroToDelete);
+  }
 }

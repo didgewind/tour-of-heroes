@@ -5,5 +5,7 @@ export interface HeroesIntService {
 
     getHeroes(): Observable<Hero[]>;
     getHero(id: number): Observable<Hero>;
-    updateHero (hero: Hero): Observable<any>;
+    updateHero(updatedHero: Hero): Observable<Hero>;
+    addHero(newHero: Hero): Observable<Hero>;
+    deleteHero(heroToDelete: Hero): Observable<Hero>;
 }

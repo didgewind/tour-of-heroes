@@ -1,3 +1,4 @@
+import { HeroesMockService } from './heroes-mock.service';
 import { HeroesRestService } from './heroes-rest.service';
 import { MessagesService } from './messages.service';
 import { Observable } from 'rxjs/Observable';
@@ -28,12 +29,26 @@ export class HeroesAdapterService implements HeroesIntService {
       );
   }
 
-  updateHero (hero: Hero): Observable<any> {
+  updateHero (hero: Hero): Observable<Hero> {
     return this.heroesService.updateHero(hero)
       .pipe(
         tap(_ => this.log(`héroe con id=${hero.id} actualizado`)),
-        catchError(this.handleError<any>('updateHero'))
+        catchError(this.handleError<any>(`updateHero id=${hero.id}`))
       )
+  }
+
+  addHero(newHero: Hero): Observable<Hero> {
+    return this.heroesService.addHero(newHero).pipe(
+      tap((hero: Hero) => this.log(`héroe con id=${hero.id} añadido`)),
+      catchError(this.handleError<any>(`addHero nombre=${newHero.name}`))
+    )
+  }
+
+  deleteHero(heroToDelete: Hero): Observable<Hero> {
+    return this.heroesService.deleteHero(heroToDelete).pipe(
+      tap(_ => this.log(`${heroToDelete.name} eliminada`)),
+      catchError(this.handleError<any>(`deleteHero id=${heroToDelete.id}`))
+    )
   }
 
   private log(mensaje: string): void {
@@ -44,7 +59,7 @@ export class HeroesAdapterService implements HeroesIntService {
   /* Devuelve una función que es la que invoca catchError */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
+      console.error(error);
       this.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };

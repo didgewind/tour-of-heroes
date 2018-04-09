@@ -21,8 +21,18 @@ export class HeroesRestService implements HeroesIntService {
     return this.http.get<Hero>(url);
   }
 
-  updateHero (updatedHero: Hero): Observable<any> {
+  updateHero (updatedHero: Hero): Observable<Hero> {
     const url = `${this.heroesRestUrl}/${updatedHero.id}`;
-    return this.http.put(url, updatedHero);
+    return this.http.put<Hero>(url, updatedHero);
   }
+
+  addHero(newHero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesRestUrl, newHero);
+  }
+
+  deleteHero(heroToDelete: Hero): Observable<Hero> {
+    const url = `${this.heroesRestUrl}/${heroToDelete.id}`;
+    return this.http.delete<Hero>(url);
+  }
+
 }
